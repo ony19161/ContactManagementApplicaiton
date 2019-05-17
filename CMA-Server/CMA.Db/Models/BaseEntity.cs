@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace CMA.Models.Core
+namespace CMA.Db.Models
 {
     public class BaseEntity
     {

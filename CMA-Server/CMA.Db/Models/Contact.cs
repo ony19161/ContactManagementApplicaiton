@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace CMA.Models.Core
+namespace CMA.Db.Models
 {
     public class Contact : BaseEntity
     {

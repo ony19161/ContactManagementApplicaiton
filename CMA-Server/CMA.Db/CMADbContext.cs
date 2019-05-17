@@ -1,8 +1,8 @@
-﻿using CMA.Models.Core;
+﻿using CMA.Db.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 
-namespace CMA.Data
+namespace CMA.Db
 {
     public class CMADbContext : DbContext
     {
@@ -11,8 +11,6 @@ namespace CMA.Data
 
         }
 
-        public DbSet<User> Users{ get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace CMA.Models.Core
@@ -7,9 +8,19 @@ namespace CMA.Models.Core
     public class BaseEntity
     {
         public Guid Id { get; set; }
-        public Guid CreatedBy { get; set; }
+
+        [Required]
+        [MaxLength(50)]
+        public string CreatedBy { get; set; }
+
+        [Required]
         public DateTime CreatedAt { get; set; }
-        public Guid ModifiedBy { get; set; }
+
+        [Required]
+        [MaxLength(50)]
+        public string ModifiedBy { get; set; }
+
+        [Required]
         public DateTime ModifiedAt { get; set; }
     }
 }

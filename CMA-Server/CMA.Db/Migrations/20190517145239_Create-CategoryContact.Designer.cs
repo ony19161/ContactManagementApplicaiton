@@ -4,14 +4,16 @@ using CMA.Db;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CMA.Db.Migrations
 {
     [DbContext(typeof(CMADbContext))]
-    partial class CMADbContextModelSnapshot : ModelSnapshot
+    [Migration("20190517145239_Create-CategoryContact")]
+    partial class CreateCategoryContact
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

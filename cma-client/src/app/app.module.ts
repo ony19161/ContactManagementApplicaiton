@@ -5,12 +5,15 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthService } from './services/auth.service';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
    declarations: [
       AppComponent,
-      SignInComponent
+      SignInComponent,
+      HomeComponent
    ],
    imports: [
       BrowserModule,
@@ -18,7 +21,9 @@ import { SignInComponent } from './sign-in/sign-in.component';
       HttpClientModule,
       FormsModule
    ],
-   providers: [],
+   providers: [
+      AuthService
+   ],
    bootstrap: [
       AppComponent
    ]

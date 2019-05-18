@@ -20,8 +20,14 @@ namespace CMA.Db.Models
         public string Address { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        public string Password { get; set; }
+        /*Hashed Password*/
+        public byte[] Password { get; set; }
+
+        [Required]
+        /*Password Salt*/
+        public byte[] PasswordSalt { get; set; }
+
+        public DateTime LastLoggedIn { get; set; }
 
     }
 }

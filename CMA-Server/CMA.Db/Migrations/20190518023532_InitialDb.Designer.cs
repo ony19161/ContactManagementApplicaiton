@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CMA.Db.Migrations
 {
     [DbContext(typeof(CMADbContext))]
-    [Migration("20190517145239_Create-CategoryContact")]
-    partial class CreateCategoryContact
+    [Migration("20190518023532_InitialDb")]
+    partial class InitialDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -40,6 +40,9 @@ namespace CMA.Db.Migrations
                     b.Property<string>("ModifiedBy")
                         .IsRequired()
                         .HasMaxLength(50);
+
+                    b.Property<string>("RequestFrom")
+                        .HasMaxLength(20);
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -87,6 +90,9 @@ namespace CMA.Db.Migrations
 
                     b.Property<string>("ProfilePicture");
 
+                    b.Property<string>("RequestFrom")
+                        .HasMaxLength(20);
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
@@ -113,6 +119,8 @@ namespace CMA.Db.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
+                    b.Property<DateTime>("LastLoggedIn");
+
                     b.Property<DateTime>("ModifiedAt");
 
                     b.Property<string>("ModifiedBy")
@@ -123,9 +131,14 @@ namespace CMA.Db.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(50);
+                    b.Property<byte[]>("Password")
+                        .IsRequired();
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .IsRequired();
+
+                    b.Property<string>("RequestFrom")
+                        .HasMaxLength(20);
 
                     b.HasKey("Id");
 

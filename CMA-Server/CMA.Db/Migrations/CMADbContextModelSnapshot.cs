@@ -39,6 +39,9 @@ namespace CMA.Db.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
+                    b.Property<string>("RequestFrom")
+                        .HasMaxLength(20);
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(50);
@@ -85,6 +88,9 @@ namespace CMA.Db.Migrations
 
                     b.Property<string>("ProfilePicture");
 
+                    b.Property<string>("RequestFrom")
+                        .HasMaxLength(20);
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
@@ -111,6 +117,8 @@ namespace CMA.Db.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
+                    b.Property<DateTime>("LastLoggedIn");
+
                     b.Property<DateTime>("ModifiedAt");
 
                     b.Property<string>("ModifiedBy")
@@ -121,9 +129,14 @@ namespace CMA.Db.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(50);
+                    b.Property<byte[]>("Password")
+                        .IsRequired();
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .IsRequired();
+
+                    b.Property<string>("RequestFrom")
+                        .HasMaxLength(20);
 
                     b.HasKey("Id");
 

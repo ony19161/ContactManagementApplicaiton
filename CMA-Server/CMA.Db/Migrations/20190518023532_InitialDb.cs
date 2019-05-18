@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CMA.Db.Migrations
 {
-    public partial class CreateCategoryContact : Migration
+    public partial class InitialDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,12 +16,35 @@ namespace CMA.Db.Migrations
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     ModifiedBy = table.Column<string>(maxLength: 50, nullable: false),
                     ModifiedAt = table.Column<DateTime>(nullable: false),
+                    RequestFrom = table.Column<string>(maxLength: 20, nullable: true),
                     Title = table.Column<string>(maxLength: 50, nullable: false),
                     Description = table.Column<string>(maxLength: 250, nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    CreatedBy = table.Column<string>(maxLength: 50, nullable: false),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
+                    ModifiedBy = table.Column<string>(maxLength: 50, nullable: false),
+                    ModifiedAt = table.Column<DateTime>(nullable: false),
+                    RequestFrom = table.Column<string>(maxLength: 20, nullable: true),
+                    Name = table.Column<string>(maxLength: 50, nullable: false),
+                    Email = table.Column<string>(maxLength: 100, nullable: false),
+                    Address = table.Column<string>(maxLength: 250, nullable: false),
+                    Password = table.Column<byte[]>(nullable: false),
+                    PasswordSalt = table.Column<byte[]>(nullable: false),
+                    LastLoggedIn = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -33,6 +56,7 @@ namespace CMA.Db.Migrations
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     ModifiedBy = table.Column<string>(maxLength: 50, nullable: false),
                     ModifiedAt = table.Column<DateTime>(nullable: false),
+                    RequestFrom = table.Column<string>(maxLength: 20, nullable: true),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
                     Email = table.Column<string>(maxLength: 100, nullable: false),
                     Mobile = table.Column<string>(maxLength: 13, nullable: false),
@@ -61,6 +85,9 @@ namespace CMA.Db.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Contacts");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Categories");

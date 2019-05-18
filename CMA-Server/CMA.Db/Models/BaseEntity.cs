@@ -22,5 +22,8 @@ namespace CMA.Db.Models
 
         [Required]
         public DateTime ModifiedAt { get; set; }
+
+        [MaxLength(20)]
+        public string RequestFrom { get; set; }
     }
 }

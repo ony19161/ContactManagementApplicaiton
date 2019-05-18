@@ -19,12 +19,12 @@ namespace CMA_Server.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly IAuthRepository _repository;
+        private readonly IUserRepository _userRepository;
         private readonly IConfiguration _config;
 
-        public AuthController(IAuthRepository repository, IConfiguration config)
+        public AuthController(IUserRepository userRepository, IConfiguration config)
         {
-            _repository = repository;
+            _userRepository = userRepository;
             _config = config;
         }
 
@@ -33,7 +33,7 @@ namespace CMA_Server.Controllers
         {
             registerUser.Email = registerUser.Email.ToLower();
 
-            if (await _repository.IsUserExists(registerUser.Email))
+            if (await _userRepository.IsUserExists(registerUser.Email))
                 return BadRequest("User already exists");
 
             var newUser = new User
@@ -49,7 +49,7 @@ namespace CMA_Server.Controllers
                 ModifiedBy = "System"
             };
 
-            var createdUser = await _repository.Register(newUser, registerUser.Password);
+            var createdUser = await _userRepository.Register(newUser, registerUser.Password);
 
             return StatusCode(201);
         }
@@ -57,7 +57,7 @@ namespace CMA_Server.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginUser loginUser)
         {
-            var sUser = await _repository.Login(loginUser.Username.ToLower(), loginUser.Password);
+            var sUser = await _userRepository.Login(loginUser.Username.ToLower(), loginUser.Password);
 
             if (sUser == null)
                 return Unauthorized();

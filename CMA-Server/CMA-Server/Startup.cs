@@ -34,7 +34,7 @@ namespace CMA_Server
             services.AddDbContextPool<CMADbContext>(db => db.UseSqlServer(Configuration.GetConnectionString("CMADbConnectionString")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddCors();
-            services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 options.TokenValidationParameters = new TokenValidationParameters

@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CMA.Utility", "CMA.Util\CMA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CMA.DTO", "CMA.DTO\CMA.DTO.csproj", "{27929BF6-A932-4808-A2B6-9A50D4DE2951}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMA.Repository.Test", "CMA.Repository.Test\CMA.Repository.Test.csproj", "{C50DE6D3-69D0-46E1-9438-23153326439A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CMA.Repository.Test", "CMA.Repository.Test\CMA.Repository.Test.csproj", "{C50DE6D3-69D0-46E1-9438-23153326439A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

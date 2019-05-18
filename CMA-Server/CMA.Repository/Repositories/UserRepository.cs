@@ -1,5 +1,7 @@
 ﻿using CMA.Db;
+using CMA.Db.Models;
 using CMA.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,37 +9,51 @@ using System.Threading.Tasks;
 
 namespace CMA.Repository.Repositories
 {
-    public class UserRepository<T> : IBaseRepository<T> where T : class
+    public class UserRepository : BaseRepository<User>, IUserRepository
     {
-        private readonly CMADbContext _context;
+        private readonly CMADbContext _dbContext;
 
-        public UserRepository(CMADbContext context)
+        public UserRepository(CMADbContext dbContext) : base(dbContext)
         {
-            _context = context;
-        }
-        public Task<bool> Add(T entity)
-        {
-            throw new NotImplementedException();
+            _dbContext = dbContext;
         }
 
-        public Task<bool> Delete(string id)
+
+        public async Task<bool> IsUserExists(string username)
         {
-            throw new NotImplementedException();
+            if (await _dbContext.Users.AnyAsync(u => u.Email.Equals(username)))
+                return true;
+
+            return false;
         }
 
-        public Task<T> Get(string id)
+        public async Task<User> Login(string username, string password)
         {
-            throw new NotImplementedException();
+            User user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email.Equals(username));
+
+            if (user == null)
+                return null;
+
+            if (!Utility.Cryptography.IsValidPasswordHash(password, user.Password, user.PasswordSalt))
+                return null;
+
+
+            return user;
         }
 
-        public Task<List<T>> GetAll()
+        public async Task<User> Register(User user, string password)
         {
-            throw new NotImplementedException();
+            byte[] passwordHash, passwordSalt;
+            Utility.Cryptography.CreatePasswordHash(password, out passwordHash, out passwordSalt);
+
+            user.Password = passwordHash;
+            user.PasswordSalt = passwordSalt;
+
+            await _dbContext.Users.AddAsync(user);
+            await _dbContext.SaveChangesAsync();
+
+            return user;
         }
 
-        public Task<bool> Update(T entity)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

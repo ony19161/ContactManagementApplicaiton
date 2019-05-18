@@ -1,3 +1,35 @@
-<p>
-  register works!
-</p>
+<form *ngIf="!registrationCompleted" #registerForm="ngForm" (ngSubmit)="register()" class="form-signup">
+    <div class='app-icon mb-4'>
+        <i class="fa fa-address-book fa-5x"></i>
+    </div>
+
+    <div class="social-login">
+        <button class="btn facebook-btn social-btn" type="button"><span><i class="fa fa-facebook-f"></i> Sign up with Facebook</span> </button>
+    </div>
+    <div class="social-login">
+        <button class="btn google-btn social-btn" type="button"><span><i class="fa fa-google-plus-g"></i> Sign up with Google+</span> </button>
+    </div>
+    
+    <p style="text-align:center">OR</p>
+
+    <input type="text" name="name" required class="form-control" 
+           [(ngModel)]="model.name" placeholder="Full name" autofocus="">
+    <input type="text" name="address" required class="form-control" 
+           [(ngModel)]="model.address" placeholder="Address" autofocus="">
+    <input type="text" name="mobile" required class="form-control" 
+           [(ngModel)]="model.mobile" placeholder="Mobile" autofocus="">
+    <input type="email" name="email" required class="form-control" 
+           [(ngModel)]="model.email" placeholder="Email address" required autofocus="">
+    <input type="password" name="password" required class="form-control" 
+           [(ngModel)]="model.password" placeholder="Password" required autofocus="">
+
+    <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-user-plus"></i> Sign Up</button>
+    <button class="btn btn-default btn-block" type="button" (click)="cancel()"><i class="fa fa-minus"></i> Cancel</button>
+</form>
+<div *ngIf="registrationCompleted" class="notify successbox">
+    <h2>Sign up successfull</h2>
+    <div class='app-icon mb-4 register-success'>
+        <i class="fa fa-check-circle fa-3x"></i>
+    </div>
+    <p>Thank you for sign up. <a href="#" (click)="cancel()"> Click here</a> to sign in</p>
+  </div>

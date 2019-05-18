@@ -27,6 +27,12 @@ namespace CMA.Repository.Repositories
             return false;
         }
 
+        public async Task UpdateUserLastLoggedIn(User user)
+        {
+            user.LastLoggedIn = DateTime.UtcNow;
+            await _dbContext.SaveChangesAsync();
+        }
+
         public async Task<User> Login(string username, string password)
         {
             User user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email.Equals(username));

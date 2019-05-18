@@ -9,6 +9,7 @@ import { AuthService } from '../services/auth.service';
 
 export class SignInComponent implements OnInit {
   model: any = {};
+  showSignInForm = true;
 
   constructor(private authService: AuthService) { }
 
@@ -24,6 +25,14 @@ export class SignInComponent implements OnInit {
         console.log('error');
       }
     );
+  }
+
+  showRegisterForm() {
+    this.showSignInForm = false;
+  }
+
+  cancelRegisterMode(isShowSignInForm: boolean){
+    this.showSignInForm = isShowSignInForm;
   }
 
 }

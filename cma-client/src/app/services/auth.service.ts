@@ -8,14 +8,14 @@ import { map } from 'rxjs/operators';
 })
 export class AuthService  {
   isloggedin: boolean;
-  baseURL = 'http://localhost:50376/api/auth/login';
+  baseURL = 'http://localhost:50376/api/auth/';
 
   constructor(private http: HttpClient)  {
     this.isloggedin = false;
    }
 
   login(model: any) {
-    return this.http.post(this.baseURL, model)
+    return this.http.post(this.baseURL + 'login', model)
     .pipe(
       map((response: any) => {
 
@@ -28,6 +28,10 @@ export class AuthService  {
 
       })
     );
+  }
+
+  register(model: any) {
+    return this.http.post(this.baseURL + 'register', model);
   }
 
 

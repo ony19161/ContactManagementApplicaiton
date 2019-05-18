@@ -6,7 +6,7 @@
     padding-bottom: 40px;
     background-color: #f5f5f5;
 }
-.sign-in-form {
+.sign-in-form, .sign-up-form {
     width: 500px;
     margin: 10vh auto;
     background-color: #f3f3f3;

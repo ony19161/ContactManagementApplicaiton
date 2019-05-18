@@ -62,6 +62,8 @@ namespace CMA_Server.Controllers
             if (sUser == null)
                 return Unauthorized();
 
+            await _userRepository.UpdateUserLastLoggedIn(sUser);
+
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, sUser.Id.ToString()),

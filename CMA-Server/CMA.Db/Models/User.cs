@@ -27,7 +27,7 @@ namespace CMA.Db.Models
         /*Password Salt*/
         public byte[] PasswordSalt { get; set; }
 
-        public DateTime LastLoggedIn { get; set; }
+        public DateTime? LastLoggedIn { get; set; }
 
     }
 }

@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CMA.Db\CMA.Db.csproj" />
+    <ProjectReference Include="..\CMA.DTO\CMA.DTO.csproj" />
     <ProjectReference Include="..\CMA.Repository\CMA.Repository.csproj" />
   </ItemGroup>
 

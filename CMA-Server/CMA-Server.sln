@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMA.Repository", "CMA.Repos
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMA.Utility", "CMA.Util\CMA.Utility.csproj", "{187E7763-AD22-4F18-A5CE-FF17437EB667}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMA.DTO", "CMA.DTO\CMA.DTO.csproj", "{27929BF6-A932-4808-A2B6-9A50D4DE2951}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{187E7763-AD22-4F18-A5CE-FF17437EB667}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{187E7763-AD22-4F18-A5CE-FF17437EB667}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{187E7763-AD22-4F18-A5CE-FF17437EB667}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27929BF6-A932-4808-A2B6-9A50D4DE2951}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27929BF6-A932-4808-A2B6-9A50D4DE2951}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27929BF6-A932-4808-A2B6-9A50D4DE2951}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27929BF6-A932-4808-A2B6-9A50D4DE2951}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -10,20 +10,12 @@ export class HomeComponent implements OnInit {
 
   model: any = {};
 
-  constructor(private authService: AuthService) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
-  login() {
-    this.authService.login(this.model).subscribe(
-      next => {
-        console.log('logged in');
-      },
-      error => {
-        console.log('error');
-      }
-    );
+  logOut() {
+    localStorage.removeItem('token');
   }
-
 }

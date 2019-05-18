@@ -1,15 +1,23 @@
-<form #loginForm="ngForm" class="form-signin" (ngSubmit)="login()">
-  <div class='app-icon'>
-    <i class="fa fa-address-book fa-5x"></i>
-  </div>
-  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-  <label for="inputEmail" class="sr-only">Email address</label>
-  <input type="email" id="inputEmail" name='username' class="form-control" 
-    placeholder="Email address" required="" autofocus="" [(ngModel)]="model.username">
-  <label for="inputPassword" class="sr-only">Password</label>
-  <input type="password" id="inputPassword" name='password' class="form-control" 
-    placeholder="Password" required="" [(ngModel)]="model.password">
-  
-  <button [disabled]='!loginForm.valid' class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-  <div class="mb-3"><a href="#"> Click here to register</a></div>
-</form>
+<div class=sign-in-form>
+  <form #loginForm="ngForm" class="form-signin" (ngSubmit)="login()">
+    <div class='app-icon mb-4'>
+      <i class="fa fa-address-book fa-5x"></i>
+    </div>
+    
+    <div class="social-login">
+        <button class="btn facebook-btn social-btn mb-2" type="button"><span><i class="fa fa-facebook-f"></i> Sign in with Facebook</span> </button>
+        <button class="btn google-btn social-btn mb-2" type="button"><span><i class="fa fa-google-plus-g"></i> Sign in with Google+</span> </button>
+    </div>
+    <p style="text-align:center"> OR  </p>
+    <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign in</h1>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="email" id="inputEmail" name='username' class="form-control mb-3" 
+      placeholder="Email address" required="" autofocus="" [(ngModel)]="model.username">
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" name='password' class="form-control mb-3" 
+      placeholder="Password" required="" [(ngModel)]="model.password">
+    
+    <button [disabled]='!loginForm.valid' class="btn btn-lg btn-primary btn-block mb-3" type="submit">Sign in</button>
+    <div class="mb-3"><a href="#"> Click here to register</a></div>
+  </form>
+</div>

@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace CMA_Server.Helpers
+namespace CMA.DTO.ViewModels
 {
-    public class PaginationHeader
+    public class Pagination
     {
-        public PaginationHeader(int pageIndex, int pageSize, int totalCount, int totalPageSize)
+        public Pagination(int pageIndex, int pageSize, int totalCount, int totalPageSize)
         {
             this.PageIndex = pageIndex;
             this.PageSize = pageSize;
@@ -18,6 +17,5 @@ namespace CMA_Server.Helpers
         public int TotalPages { get; set; }
         public int PageSize { get; set; }
         public int TotalCount { get; set; }
-
     }
 }

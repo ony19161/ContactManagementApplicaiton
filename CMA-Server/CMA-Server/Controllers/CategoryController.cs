@@ -10,6 +10,7 @@ using ViewModels = CMA.DTO.ViewModels;
 using RequstModels = CMA.DTO.RequestModels;
 using DbModels = CMA.Db.Models;
 using CMA_Server.Helpers;
+using System.IO;
 
 namespace CMA_Server.Controllers
 {
@@ -42,10 +43,13 @@ namespace CMA_Server.Controllers
                     });
                 }
 
-                Response.AddPagination(pagedCagegoryList.PageIndex, pagedCagegoryList.PageSize, pagedCagegoryList.TotalCount, pagedCagegoryList.TotalPages);
+                
 
+                return Ok(new {
+                    Pagination = new ViewModels.Pagination(pagedCagegoryList.PageIndex, pagedCagegoryList.PageSize, pagedCagegoryList.TotalCount, pagedCagegoryList.TotalPages),
+                    Categories = vCategories
 
-                return Ok(vCategories);
+                });
             }
             catch (Exception ex)
             {
@@ -120,6 +124,35 @@ namespace CMA_Server.Controllers
             {
                 return BadRequest();
             }
+        }
+
+        [HttpGet("exportToCsv")]
+        public async Task<IActionResult> GetCSVList()
+        {
+            var categories = await _categoryRepository.GetAll();
+            var vCategories = new List<ViewModels.Category>();
+            foreach (var sCategory in categories)
+            {
+                vCategories.Add(new ViewModels.Category
+                {
+                    Id = sCategory.Id.ToString(),
+                    Title = sCategory.Title,
+                    Description = sCategory.Description
+                });
+            }
+            var comlumHeaders = new string[]
+            {
+                "Title",
+                "Description"
+            };
+            var records = (from c in vCategories
+                            select new object[]
+                                   {
+                                            $"{c.Title}",
+                                            $"\"{c.Description}\""
+                                   }).ToList();
+
+            return File(CMA.Utility.ExportData.ConvertToCsv(records, comlumHeaders), "text/csv", $"Employee.csv");
         }
 
     }

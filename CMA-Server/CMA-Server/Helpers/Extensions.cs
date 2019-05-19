@@ -10,14 +10,5 @@ namespace CMA_Server.Helpers
 {
     public static class Extensions
     {
-        public static void AddPagination(this HttpResponse response, int pageIndex, int pageSize, int totalCount, int totalPages)
-        {
-            var paginationHeader = new PaginationHeader(pageIndex, pageSize, totalCount, totalPages);
-            var camelCaseFormatter = new JsonSerializerSettings();
-            camelCaseFormatter.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            response.Headers.Add("Pagination", JsonConvert.SerializeObject(paginationHeader, camelCaseFormatter));
-            response.Headers.Add("Access-Control-Expose-Header", "Pagination");
-
-        }
     }
 }

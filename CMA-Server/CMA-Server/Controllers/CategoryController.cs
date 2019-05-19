@@ -126,33 +126,21 @@ namespace CMA_Server.Controllers
             }
         }
 
-        [HttpGet("exportToCsv")]
-        public async Task<IActionResult> GetCSVList()
+        [HttpGet("getAll")]
+        public async Task<IActionResult> GetAll()
         {
             var categories = await _categoryRepository.GetAll();
-            var vCategories = new List<ViewModels.Category>();
+            var vCategories = new List<ViewModels.ExportCategory>();
             foreach (var sCategory in categories)
             {
-                vCategories.Add(new ViewModels.Category
+                vCategories.Add(new ViewModels.ExportCategory
                 {
-                    Id = sCategory.Id.ToString(),
                     Title = sCategory.Title,
                     Description = sCategory.Description
                 });
             }
-            var comlumHeaders = new string[]
-            {
-                "Title",
-                "Description"
-            };
-            var records = (from c in vCategories
-                            select new object[]
-                                   {
-                                            $"{c.Title}",
-                                            $"\"{c.Description}\""
-                                   }).ToList();
 
-            return File(CMA.Utility.ExportData.ConvertToCsv(records, comlumHeaders), "text/csv", $"Employee.csv");
+            return Ok(vCategories);
         }
 
     }

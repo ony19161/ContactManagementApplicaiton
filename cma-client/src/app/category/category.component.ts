@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Category } from '../models/category';
 import { CategoryService } from '../services/category.service';
 import { PaginatedResult } from '../models/Pagination';
+import { AngularCsv  } from 'angular7-csv/dist/Angular-csv';
 
 @Component({
   selector: 'app-category',
@@ -16,6 +17,17 @@ export class CategoryComponent implements OnInit {
   isShowCategoryList: boolean;
   model: Category = new Category();
   action: string;
+  csvOptions = {
+    fieldSeparator: ',',
+    quoteStrings: '"',
+    decimalseparator: '.',
+    showLabels: true,
+    showTitle: true,
+    title: 'Your Category List :',
+    useBom: true,
+    noDownload: false,
+    headers: ['Title', 'Description']
+  };
 
   constructor(private categoryService: CategoryService) { }
 
@@ -78,7 +90,11 @@ export class CategoryComponent implements OnInit {
   }
 
   exportToCsv() {
-    this.categoryService.exportToCsv();
+    this.categoryService.getAll().subscribe((data) => {
+      return new  AngularCsv(data, 'CategoryList', this.csvOptions);
+    }, error => {
+      console.log('error');
+    });
   }
 
 

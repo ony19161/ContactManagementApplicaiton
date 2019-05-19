@@ -38,8 +38,8 @@ export class CategoryService {
     return this.http.get<Category>(this.baseURL + '/get?id=' + id, httpOptions);
   }
 
-  exportToCsv() {
-    return this.http.get(this.baseURL + '/exportToCsv', httpOptions)
+  getAll(): Observable<Category[]> {
+    return this.http.get<Category[]>(this.baseURL + '/getAll', httpOptions)
     .pipe(
       map(response => {
         console.log(response);

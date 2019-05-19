@@ -9,6 +9,7 @@ import { AngularCsv  } from 'angular7-csv/dist/Angular-csv';
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.css']
 })
+
 export class CategoryComponent implements OnInit {
   categories: Category[];
   totalCount: number;

@@ -23,7 +23,7 @@ namespace CMA.Repository.Repositories
 
         public async Task<PagedList<Category>> GetCategories(RequestModels.PagingFilter pagingFilter)
         {
-            var categories = _dbContext.Categories;
+            var categories = _dbContext.Categories.OrderBy(c => c.Title);
 
             return await PagedList<Category>.CreateAsync(categories, pagingFilter.PageIndex, pagingFilter.PageSize);
         }
@@ -32,5 +32,7 @@ namespace CMA.Repository.Repositories
         {
             throw new NotImplementedException();
         }
+
+
     }
 }

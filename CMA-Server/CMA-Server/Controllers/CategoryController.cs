@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CMA.Repository.Interfaces;
+﻿using CMA.Repository.Interfaces;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ViewModels = CMA.DTO.ViewModels;
-using RequstModels = CMA.DTO.RequestModels;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using DbModels = CMA.Db.Models;
-using CMA_Server.Helpers;
-using System.IO;
+using RequstModels = CMA.DTO.RequestModels;
+using ViewModels = CMA.DTO.ViewModels;
 
 namespace CMA_Server.Controllers
 {
@@ -41,9 +37,7 @@ namespace CMA_Server.Controllers
                         Title = sCategory.Title,
                         Description = sCategory.Description
                     });
-                }
-
-                
+                }                
 
                 return Ok(new {
                     Pagination = new ViewModels.Pagination(pagedCagegoryList.PageIndex, pagedCagegoryList.PageSize, pagedCagegoryList.TotalCount, pagedCagegoryList.TotalPages),

@@ -1,10 +1,14 @@
 ﻿using CMA.Db;
 using CMA.Db.Models;
 using CMA.Repository.Interfaces;
+using CMA.Repository.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using RequestModels = CMA.DTO.RequestModels;
 
 namespace CMA.Repository.Repositories
 {
@@ -16,9 +20,16 @@ namespace CMA.Repository.Repositories
         {
             _dbContext = dbContext;
         }
-        public IEnumerable<Contact> GetContacts(int pageIndex, int pageSize)
+        public async Task<PagedList<Contact>> GetContacts(RequestModels.PagingFilter pagingFilter)
         {
-            return _dbContext.Contacts;
+            var contacts = _dbContext.Contacts.Include(c => c.Category).OrderBy(c => c.Name);
+
+            return await PagedList<Contact>.CreateAsync(contacts, pagingFilter.PageIndex, pagingFilter.PageSize);
+        }
+
+        public async Task<IEnumerable<Contact>> GetContactsToExport()
+        {
+            return await _dbContext.Contacts.Include(c => c.Category).ToListAsync();
         }
     }
 }

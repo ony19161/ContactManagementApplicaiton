@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BaseService } from './BaseService';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService  {
   isloggedin: boolean;
-  baseURL = 'http://localhost:50376/api/auth/';
+  baseURL = environment.apiUrl + 'auth/';
 
   constructor(private http: HttpClient)  {
     this.isloggedin = false;

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CMA.Db.Models;
 using CMA.DTO.RequestModels;
+using CMA.DTO.ViewModels;
 using CMA.Repository.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -84,7 +85,9 @@ namespace CMA_Server.Controllers
             var tokenHandler = new JwtSecurityTokenHandler();
             var userToken = tokenHandler.CreateToken(tokenDescriptor);
 
-            return Ok(new {
+            return Ok(new ValidUser {
+                Id = sUser.Id.ToString(),
+                Name = sUser.Name,
                 Token = tokenHandler.WriteToken(userToken)
             });
         }

@@ -30,7 +30,7 @@ namespace CMA.Repository.Repositories
         public async Task UpdateUserLastLoggedIn(User user)
         {
             user.LastLoggedIn = DateTime.UtcNow;
-            await _dbContext.SaveChangesAsync();
+            await base.Commit();
         }
 
         public async Task<User> Login(string username, string password)
@@ -56,10 +56,14 @@ namespace CMA.Repository.Repositories
             user.PasswordSalt = passwordSalt;
 
             await _dbContext.Users.AddAsync(user);
-            await _dbContext.SaveChangesAsync();
+            await base.Commit();
 
             return user;
         }
 
+        public Task Update(User entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

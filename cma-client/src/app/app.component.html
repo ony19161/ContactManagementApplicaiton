@@ -8,8 +8,8 @@
   <app-sign-in></app-sign-in>
 </div>
 <div *ngIf="loggedIn()"  class="home-container">
-  my hme view
-  <app-home></app-home>
+    <app-nav></app-nav>
+    <router-outlet></router-outlet>
 </div>
 
-<router-outlet></router-outlet>
+

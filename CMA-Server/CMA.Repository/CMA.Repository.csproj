@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CMA.Db\CMA.Db.csproj" />
+    <ProjectReference Include="..\CMA.DTO\CMA.DTO.csproj" />
     <ProjectReference Include="..\CMA.Util\CMA.Utility.csproj" />
   </ItemGroup>
 

@@ -8,11 +8,12 @@ namespace CMA.Repository.Interfaces
 {
     public interface IBaseRepository<TEntity> where TEntity : class
     {
-        Task<TEntity> Get(string id);
+        Task<TEntity> Get(Guid id);
         Task<IEnumerable<TEntity>> GetAll();
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
-        Task Add(TEntity entity);
-        Task Update(TEntity entity);
+        void Add(TEntity entity);
         void Delete(TEntity entity);
+        Task<bool> Commit();
+
     }
 }

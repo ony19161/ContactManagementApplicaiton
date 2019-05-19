@@ -17,9 +17,14 @@ namespace CMA.Repository.Repositories
         {
             Context = dbContext;
         }
-        public async Task Add(TEntity entity)
+        public void Add(TEntity entity)
         {
-            await Context.Set<TEntity>().AddAsync(entity);
+            Context.Set<TEntity>().Add(entity);
+        }
+
+        public async Task<bool> Commit()
+        {
+            return await Context.SaveChangesAsync() > 0;
         }
 
         public void Delete(TEntity entity)
@@ -32,7 +37,7 @@ namespace CMA.Repository.Repositories
             return Context.Set<TEntity>().Where(predicate);
         }
 
-        public async Task<TEntity> Get(string id)
+        public async Task<TEntity> Get(Guid id)
         {
             return await Context.Set<TEntity>().FindAsync(id);
         }
@@ -40,11 +45,6 @@ namespace CMA.Repository.Repositories
         public async Task<IEnumerable<TEntity>> GetAll()
         {
             return await Context.Set<TEntity>().ToListAsync();
-        }
-
-        public Task Update(TEntity entity)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -1,0 +1,6 @@
+.navbar-nav > li > a {
+    cursor: pointer;
+}
+.dropdown-toggle {
+    cursor: pointer;
+}

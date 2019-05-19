@@ -18,11 +18,7 @@ namespace CMA.Repository.Repositories
         }
         public IEnumerable<Contact> GetContacts(int pageIndex, int pageSize)
         {
-            return _dbContext.Contacts
-                .OrderBy(c => c.Name)
-                .Skip((pageIndex - 1) * pageSize)
-                .Take(pageSize)
-                .ToList();
+            return _dbContext.Contacts;
         }
     }
 }

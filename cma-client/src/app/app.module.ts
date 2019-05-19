@@ -12,6 +12,9 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { CategoryComponent } from './category/category.component';
 import { ContactComponent } from './contact/contact.component';
+import { NavComponent } from './nav/nav.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { CategoryService } from './services/category.service';
 
 @NgModule({
    declarations: [
@@ -20,7 +23,9 @@ import { ContactComponent } from './contact/contact.component';
       HomeComponent,
       RegisterComponent,
       CategoryComponent,
-      ContactComponent
+      ContactComponent,
+      NavComponent,
+      UserProfileComponent
    ],
    imports: [
       BrowserModule,
@@ -30,7 +35,8 @@ import { ContactComponent } from './contact/contact.component';
       BsDropdownModule.forRoot()
    ],
    providers: [
-      AuthService
+      AuthService,
+      CategoryService
    ],
    bootstrap: [
       AppComponent

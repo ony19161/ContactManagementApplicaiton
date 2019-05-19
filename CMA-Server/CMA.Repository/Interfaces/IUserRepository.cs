@@ -12,5 +12,6 @@ namespace CMA.Repository.Interfaces
         Task<User> Login(string username, string password);
         Task<bool> IsUserExists(string username);
         Task UpdateUserLastLoggedIn(User user);
+        Task Update(User entity);
     }
 }

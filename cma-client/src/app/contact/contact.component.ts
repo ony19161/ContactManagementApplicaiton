@@ -3,6 +3,9 @@ import { Contact } from '../models/contact';
 import { ContactService } from '../services/contact.service';
 import { AngularCsv  } from 'angular7-csv/dist/Angular-csv';
 import { PaginatedResult } from '../models/Pagination';
+import { Observable } from 'rxjs/internal/Observable';
+import { FormControl } from '@angular/forms';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-contact',
@@ -29,12 +32,25 @@ export class ContactComponent implements OnInit {
     noDownload: false,
     headers: ['Name', 'Email', 'Address', 'Mobile', 'Category']
   };
+  myControl = new FormControl();
+  options: string[] = ['One', 'Two', 'Three'];
+  filteredOptions: Observable<string[]>;
 
   constructor(private contactService: ContactService) { }
 
   ngOnInit() {
     this.isShowContactList = true;
     this.loadContacts(1, 10);
+    this.filteredOptions = this.myControl.valueChanges
+      .pipe(
+        map(value => this._filter(value))
+      );
+  }
+
+  private _filter(value: any): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 
   loadContacts(pageIndex, pageSize) {

@@ -71,8 +71,16 @@
              </div> 
              <div class="form-group">
                 <label for="category">Category</label>
-                <input type="text" name="category" required class="form-control" 
-                     [(ngModel)]="model.categoryId" placeholder="Category" autofocus="">
+                
+                <mat-form-field class="">
+                        <input type="text" name="category" required class="form-control" matInput [formControl]="myControl" [matAutocomplete]="auto"  
+                        [(ngModel)]="model.categoryId" placeholder="Category" autofocus="">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                        {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
              </div> 
 
         

@@ -23,11 +23,11 @@ namespace CMA_Server.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetCategories([FromQuery]RequstModels.PagingFilter pagingFilter)
+        public async Task<IActionResult> GetCategories([FromQuery]RequstModels.CategoryFilter categoryFilter)
         {
             try
             {
-                var pagedCagegoryList = await _categoryRepository.GetCategories(pagingFilter);
+                var pagedCagegoryList = await _categoryRepository.GetCategories(categoryFilter);
                 var vCategories = new List<ViewModels.Category>();
                 foreach (var sCategory in pagedCagegoryList)
                 {

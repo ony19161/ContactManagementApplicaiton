@@ -70,17 +70,28 @@
                        [(ngModel)]="model.mobile" placeholder="Mobile" autofocus="">
              </div> 
              <div class="form-group">
-                <label for="category">Category</label>
+                <label for="category">Category</label>                
+                <div class="ng-autocomplete">
+                    <ng-autocomplete 
+                      [data]="data"
+                      [searchKeyword]="keyword"
+                      placeHolder="Select a category"
+                      (selected)='selectEvent($event)'
+                      (inputChanged)='onChangeSearch($event)'
+                      (inputFocused)='onFocused($event)'
+                      [itemTemplate]="itemTemplate"
+                      [notFoundTemplate]="notFoundTemplate">                                 
+                    </ng-autocomplete>
+                     
+                    <ng-template #itemTemplate let-item>
+                    <a [innerHTML]="item.name"></a>
+                    </ng-template>
+                     
+                    <ng-template #notFoundTemplate let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                    </ng-template>
+                    </div>
                 
-                <mat-form-field class="">
-                        <input type="text" name="category" required class="form-control" matInput [formControl]="myControl" [matAutocomplete]="auto"  
-                        [(ngModel)]="model.categoryId" placeholder="Category" autofocus="">
-                    <mat-autocomplete #auto="matAutocomplete">
-                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                        {{option}}
-                        </mat-option>
-                    </mat-autocomplete>
-                </mat-form-field>
              </div> 
 
         

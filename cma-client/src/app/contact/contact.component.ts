@@ -32,25 +32,37 @@ export class ContactComponent implements OnInit {
     noDownload: false,
     headers: ['Name', 'Email', 'Address', 'Mobile', 'Category']
   };
-  myControl = new FormControl();
-  options: string[] = ['One', 'Two', 'Three'];
-  filteredOptions: Observable<string[]>;
+  
+  keyword = 'name';
+  data = [
+     {
+       id: 1,
+       name: 'Usa'
+     },
+     {
+       id: 2,
+       name: 'England'
+     }
+  ];
 
   constructor(private contactService: ContactService) { }
 
   ngOnInit() {
     this.isShowContactList = true;
     this.loadContacts(1, 10);
-    this.filteredOptions = this.myControl.valueChanges
-      .pipe(
-        map(value => this._filter(value))
-      );
   }
 
-  private _filter(value: any): string[] {
-    const filterValue = value.toLowerCase();
+  selectEvent(item) {
+    console.log(item);
+  }
 
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  onChangeSearch(val: string) {
+    // fetch remote data from here
+    // And reassign the 'data' which is binded to 'data' property.
+  }
+
+  onFocused(e){
+    // do something when input is focused
   }
 
   loadContacts(pageIndex, pageSize) {

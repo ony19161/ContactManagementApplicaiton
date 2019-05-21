@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BsDropdownModule, PaginationModule } from 'ngx-bootstrap';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,7 +35,7 @@ import { CategoryService } from './services/category.service';
       FormsModule,
       BsDropdownModule.forRoot(),
       PaginationModule.forRoot(),
-      MatAutocompleteModule
+      AutocompleteLibModule
    ],
    providers: [
       AuthService,

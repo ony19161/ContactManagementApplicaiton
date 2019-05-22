@@ -31,7 +31,7 @@ namespace CMA_Server.Controllers
                 vCategories.Add(new ViewModels.IdAndValue
                 {
                     Id = sCategory.Id.ToString(),
-                    Name = sCategory.Title
+                    Value = sCategory.Title
                 });
             }
 

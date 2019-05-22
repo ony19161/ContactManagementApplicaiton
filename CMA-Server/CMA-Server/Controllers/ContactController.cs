@@ -11,6 +11,7 @@ using ViewModels = CMA.DTO.ViewModels;
 
 namespace CMA_Server.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ContactController : ControllerBase

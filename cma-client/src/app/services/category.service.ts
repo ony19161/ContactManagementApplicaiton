@@ -36,8 +36,9 @@ export class CategoryService {
   }
 
   getDropdownCategories(searchText: string, pageIndex?, pageSize?): Observable<IdAndValue[]> {
-    
-    return this.http.get<any>(this.baseURL + '?searchText=' + searchText + '&pageIndex=' + pageIndex + '&pageSize=' + pageSize + '&IsIdValue=true',
+
+    return this.http.get<any>(this.baseURL + '?searchText=' + searchText + '&pageIndex=' +
+    pageIndex + '&pageSize=' + pageSize + '&IsIdValue=true',
      httpOptions).pipe(
        map(response => {
          return response;
@@ -53,7 +54,7 @@ export class CategoryService {
     return this.http.get<Category[]>(this.baseURL + '/getAll', httpOptions)
     .pipe(
       map(response => {
-        //console.log(response);
+        // console.log(response);
         return response;
       })
     );

@@ -38,8 +38,8 @@
         <div *ngIf="!isShowCategoryList" class="category-form-container">
             <form #registerForm="ngForm" (ngSubmit)="saveCategory()" class="form-sec">
                 <div class="action-panel mb-3">
-                    <button class="btn btn-primary" type="submit"> Save</button>
-                    <button class="btn btn-default" type="button" (click)="showCategoryList()">Cancel</button>
+                    <button class="btn btn-primary mr-3" type="submit"> Save</button>
+                    <button class="btn btn-secondary" type="button" (click)="showCategoryList()">Cancel</button>
                 </div>
                 <br/>
                 <input type="hidden" name="id" [(ngModel)]="model.id">            

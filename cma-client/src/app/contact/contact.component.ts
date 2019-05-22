@@ -35,16 +35,16 @@ export class ContactComponent implements OnInit {
     noDownload: false,
     headers: ['Name', 'Email', 'Address', 'Mobile', 'Category']
   };
-  
-  keyword = 'name';
+
+  keyword = 'value';
   data = [];
 
   constructor(private contactService: ContactService, private categoryService: CategoryService) { }
 
   ngOnInit() {
     this.isShowContactList = true;
-    this.loadContacts(1, 10);      
-    this.loadCategoryDropdown('');   
+    this.loadContacts(1, 10);
+    this.loadCategoryDropdown('');
   }
 
   selectEvent(item) {
@@ -54,8 +54,8 @@ export class ContactComponent implements OnInit {
 
   onChangeSearch(val: string) {
     this.categoryService.getDropdownCategories(val, 1, 50).subscribe((result: any) => {
-      this.data = result.categories;  
-    }); 
+      this.data = result.categories;
+    });
   }
 
   onFocused(e){
@@ -74,9 +74,10 @@ export class ContactComponent implements OnInit {
   }
 
   loadCategoryDropdown(searchText) {
+    this.model.category = '';
     this.categoryService.getDropdownCategories(searchText, 1, 50).subscribe((result: any) => {
       this.data = result.categories;
-    });  
+    });
   }
 
   pageChanged($event: any): void {
@@ -89,8 +90,8 @@ export class ContactComponent implements OnInit {
       this.action = 'edit';
       this.model = entity;
     } else {
-      this.action = 'add';      
-    }    
+      this.action = 'add';
+    }
     this.isShowContactList = false;
   }
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CMA.Repository.Models
 {
-    public class PagedList<T> : List<T>
+    public class PagedList<T> : List<T> where T : class
     {
         public PagedList(List<T> items, int count, int pageIndex, int pageSize)
         {

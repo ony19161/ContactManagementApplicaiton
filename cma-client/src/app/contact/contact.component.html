@@ -44,8 +44,8 @@
     <div *ngIf="!isShowContactList" class="category-form-container">
         <form #registerForm="ngForm" (ngSubmit)="saveCategory()" class="form-sec">
             <div class="action-panel mb-3">
-                <button class="btn btn-primary" type="submit"> Save</button>
-                <button class="btn btn-default" type="button" (click)="showContactList()">Cancel</button>
+                <button class="btn btn-primary mr-3" type="submit"> Save</button>
+                <button class="btn btn-secondary" type="button" (click)="showContactList()">Cancel</button>
             </div>
             <br/>
             <input type="hidden" name="id" [(ngModel)]="model.id">            
@@ -80,11 +80,12 @@
                       (inputChanged)='onChangeSearch($event)'
                       (inputFocused)='onFocused($event)'
                       [itemTemplate]="itemTemplate"
-                      [notFoundTemplate]="notFoundTemplate">                                 
+                      [notFoundTemplate]="notFoundTemplate"
+                      initialValue="{{model.category}}">                                 
                     </ng-autocomplete>
                      
                     <ng-template #itemTemplate let-item>
-                    <a [innerHTML]="item.name"></a>
+                    <a [innerHTML]="item.value"></a>
                     </ng-template>
                      
                     <ng-template #notFoundTemplate let-notFound>

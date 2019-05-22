@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CMA.DTO.RequestModels
 {
-    public class CategoryFilter
+    public class UserFilter
     {
         public string SearchText { get; set; }
         private const int MaxPageSize = 50;
@@ -19,5 +19,6 @@ namespace CMA.DTO.RequestModels
             set { pageSize = value > MaxPageSize ? MaxPageSize : value; }
         }
         public string SortBy { get; set; }
+        public bool IsIdValue { get; set; }
     }
 }

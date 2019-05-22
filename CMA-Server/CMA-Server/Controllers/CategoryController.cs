@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using DbModels = CMA.Db.Models;
 using RequstModels = CMA.DTO.RequestModels;
+using RepositoryModels = CMA.Repository.Models;
 using ViewModels = CMA.DTO.ViewModels;
 
 namespace CMA_Server.Controllers
@@ -22,28 +23,54 @@ namespace CMA_Server.Controllers
             _categoryRepository = categoryRepository;
         }
 
+        private List<ViewModels.IdAndValue> GetDropdownCategories(RepositoryModels.PagedList<DbModels.Category> categories)
+        {
+            var vCategories = new List<ViewModels.IdAndValue>();
+            foreach (var sCategory in categories)
+            {
+                vCategories.Add(new ViewModels.IdAndValue
+                {
+                    Id = sCategory.Id.ToString(),
+                    Name = sCategory.Title
+                });
+            }
+
+            return vCategories;
+        }
+
         [HttpGet]
-        public async Task<IActionResult> GetCategories([FromQuery]RequstModels.CategoryFilter categoryFilter)
+        public async Task<IActionResult> GetCategories([FromQuery]RequstModels.UserFilter categoryFilter)
         {
             try
             {
                 var pagedCagegoryList = await _categoryRepository.GetCategories(categoryFilter);
-                var vCategories = new List<ViewModels.Category>();
-                foreach (var sCategory in pagedCagegoryList)
+
+                if (categoryFilter.IsIdValue)
                 {
-                    vCategories.Add(new ViewModels.Category
-                    {
-                        Id = sCategory.Id.ToString(),
-                        Title = sCategory.Title,
-                        Description = sCategory.Description
+                    return Ok(new {
+                        Categories = GetDropdownCategories(pagedCagegoryList)
                     });
-                }                
+                }
+                else
+                {
+                    var vCategories = new List<ViewModels.Category>();
+                    foreach (var sCategory in pagedCagegoryList)
+                    {
+                        vCategories.Add(new ViewModels.Category
+                        {
+                            Id = sCategory.Id.ToString(),
+                            Title = sCategory.Title,
+                            Description = sCategory.Description
+                        });
+                    }
 
-                return Ok(new {
-                    Pagination = new ViewModels.Pagination(pagedCagegoryList.PageIndex, pagedCagegoryList.PageSize, pagedCagegoryList.TotalCount, pagedCagegoryList.TotalPages),
-                    Categories = vCategories
+                    return Ok(new
+                    {
+                        Pagination = new ViewModels.Pagination(pagedCagegoryList.PageIndex, pagedCagegoryList.PageSize, pagedCagegoryList.TotalCount, pagedCagegoryList.TotalPages),
+                        Categories = vCategories
 
-                });
+                    });
+                }
             }
             catch (Exception ex)
             {

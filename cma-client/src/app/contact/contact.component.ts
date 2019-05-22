@@ -6,6 +6,8 @@ import { PaginatedResult } from '../models/Pagination';
 import { Observable } from 'rxjs/internal/Observable';
 import { FormControl } from '@angular/forms';
 import { map } from 'rxjs/operators';
+import { CategoryService } from '../services/category.service';
+import { IdAndValue } from '../models/IdAndValue';
 
 @Component({
   selector: 'app-contact',
@@ -20,6 +22,7 @@ export class ContactComponent implements OnInit {
   isShowContactList: boolean;
   isNoData: boolean;
   model: Contact = new Contact();
+  selectedCategory: IdAndValue;
   action: string;
   csvOptions = {
     fieldSeparator: ',',
@@ -34,31 +37,25 @@ export class ContactComponent implements OnInit {
   };
   
   keyword = 'name';
-  data = [
-     {
-       id: 1,
-       name: 'Usa'
-     },
-     {
-       id: 2,
-       name: 'England'
-     }
-  ];
+  data = [];
 
-  constructor(private contactService: ContactService) { }
+  constructor(private contactService: ContactService, private categoryService: CategoryService) { }
 
   ngOnInit() {
     this.isShowContactList = true;
-    this.loadContacts(1, 10);
+    this.loadContacts(1, 10);      
+    this.loadCategoryDropdown('');   
   }
 
   selectEvent(item) {
-    console.log(item);
+    this.selectedCategory = item;
+    console.log(this.selectedCategory);
   }
 
   onChangeSearch(val: string) {
-    // fetch remote data from here
-    // And reassign the 'data' which is binded to 'data' property.
+    this.categoryService.getDropdownCategories(val, 1, 50).subscribe((result: IdAndValue[]) => {
+      this.data = result;  
+    }); 
   }
 
   onFocused(e){
@@ -76,6 +73,12 @@ export class ContactComponent implements OnInit {
     });
   }
 
+  loadCategoryDropdown(searchText) {
+    this.categoryService.getDropdownCategories(searchText, 1, 50).subscribe((result: IdAndValue[]) => {
+      this.data = result;  
+    });  
+  }
+
   pageChanged($event: any): void {
     this.pageIndex = $event.page;
     this.loadContacts(this.pageIndex, this.pageSize);
@@ -86,8 +89,8 @@ export class ContactComponent implements OnInit {
       this.action = 'edit';
       this.model = entity;
     } else {
-      this.action = 'add';
-    }
+      this.action = 'add';      
+    }    
     this.isShowContactList = false;
   }
 

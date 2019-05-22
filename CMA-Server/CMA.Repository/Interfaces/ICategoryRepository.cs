@@ -11,6 +11,6 @@ namespace CMA.Repository.Interfaces
     public interface ICategoryRepository : IBaseRepository<Category>
     {
         Task Update(Category entity);
-        Task<PagedList<Category>> GetCategories(RequestModels.CategoryFilter categoryFilter);
+        Task<PagedList<Category>> GetCategories(RequestModels.UserFilter categoryFilter);
     }
 }

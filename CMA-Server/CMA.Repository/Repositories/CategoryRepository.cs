@@ -21,9 +21,14 @@ namespace CMA.Repository.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<PagedList<Category>> GetCategories(RequestModels.CategoryFilter filter)
+        public async Task<PagedList<Category>> GetCategories(RequestModels.UserFilter filter)
         {
-            var categories = _dbContext.Categories.Where(c => c.Title.ToLower().StartsWith(filter.SearchText.ToLower())).OrderBy(c => c.Title);
+            var categories = _dbContext.Categories.OrderBy(c => c.Title).AsQueryable();
+
+            if (!string.IsNullOrEmpty(filter.SearchText))
+            {
+                categories = categories.Where(c => c.Title.ToLower().Contains(filter.SearchText.ToLower()));
+            }
 
             return await PagedList<Category>.CreateAsync(categories, filter.PageIndex, filter.PageSize);
         }

@@ -34,12 +34,12 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit() {
     this.isShowCategoryList = true;
-    this.loadCategories(1, 10);
+    this.loadCategories('', 1, 10);
   }
 
-  loadCategories(pageIndex, pageSize) {
+  loadCategories(searchText, pageIndex, pageSize) {
     this.isShowCategoryList = true;
-    this.categoryService.getCategories(pageIndex, pageSize).subscribe((paginatedResult: PaginatedResult<Category[]>) => {
+    this.categoryService.getCategories(searchText, pageIndex, pageSize).subscribe((paginatedResult: PaginatedResult<Category[]>) => {
       this.categories = paginatedResult.result;
       this.totalCount = paginatedResult.pagination.totalCount;
       this.pageSize = paginatedResult.pagination.pageSize;
@@ -49,7 +49,7 @@ export class CategoryComponent implements OnInit {
 
   pageChanged($event: any): void {
     this.pageIndex = $event.page;
-    this.loadCategories(this.pageIndex, this.pageSize);
+    this.loadCategories('', this.pageIndex, this.pageSize);
   }
 
   hideCategoryList(entity: any) {
@@ -76,7 +76,7 @@ export class CategoryComponent implements OnInit {
 
   addCategory() {
     this.categoryService.addCategory(this.model).subscribe(() => {
-      this.loadCategories(this.pageIndex, this.pageSize);
+      this.loadCategories('', this.pageIndex, this.pageSize);
     }, error => {
       console.log('error');
     });
@@ -84,7 +84,7 @@ export class CategoryComponent implements OnInit {
 
   updateCategory() {
     this.categoryService.updateCategory(this.model).subscribe(() => {
-      this.loadCategories(this.pageIndex, this.pageSize);
+      this.loadCategories('', this.pageIndex, this.pageSize);
     }, error => {
       console.log('error');
     });

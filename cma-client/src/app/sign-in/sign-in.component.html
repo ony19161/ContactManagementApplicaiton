@@ -1,4 +1,4 @@
-<div *ngIf="showSignInForm" class=sign-in-form>
+<div *ngIf="showSignInForm == true" class=sign-in-form>
   <form #loginForm="ngForm" class="form-signin" (ngSubmit)="login()">
     <div class='app-icon mb-4'>
       <i class="fa fa-address-book fa-5x"></i>
@@ -18,9 +18,11 @@
       placeholder="Password" required="" [(ngModel)]="model.password">
     
     <button [disabled]='!loginForm.valid' class="btn btn-lg btn-primary btn-block mb-3" type="submit">Sign in</button>
-    <div class="mb-3"><a href="#" (click)="showRegisterForm()"> Click here to register</a></div>
+    <div class="mb-3">
+      <button class="btn btn-lg btn-primary btn-block mb-3" type="button" (click)="showRegisterForm()">Click here to register</button>
+    </div>
   </form>
 </div>
-<div *ngIf="!showSignInForm" class="sign-up-form">
+<div *ngIf="!showSignInForm == true" class="sign-up-form">
   <app-register [showRegisterForm]="!showSignInForm" (cancelRegister)="cancelRegisterMode($event)"></app-register>    
 </div>

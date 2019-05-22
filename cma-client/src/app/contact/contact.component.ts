@@ -49,12 +49,12 @@ export class ContactComponent implements OnInit {
 
   selectEvent(item) {
     this.selectedCategory = item;
-    console.log(this.selectedCategory);
+    console.log(item);
   }
 
   onChangeSearch(val: string) {
-    this.categoryService.getDropdownCategories(val, 1, 50).subscribe((result: IdAndValue[]) => {
-      this.data = result;  
+    this.categoryService.getDropdownCategories(val, 1, 50).subscribe((result: any) => {
+      this.data = result.categories;  
     }); 
   }
 
@@ -74,8 +74,8 @@ export class ContactComponent implements OnInit {
   }
 
   loadCategoryDropdown(searchText) {
-    this.categoryService.getDropdownCategories(searchText, 1, 50).subscribe((result: IdAndValue[]) => {
-      this.data = result;  
+    this.categoryService.getDropdownCategories(searchText, 1, 50).subscribe((result: any) => {
+      this.data = result.categories;
     });  
   }
 
@@ -95,7 +95,7 @@ export class ContactComponent implements OnInit {
   }
 
   saveCategory() {
-
+    this.model.categoryId = this.selectedCategory.id;
     this.model.requestfrom = 'browser';
 
     if (this.action === 'add') {

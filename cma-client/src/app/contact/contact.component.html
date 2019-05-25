@@ -1,5 +1,4 @@
-<div class="container">
-    <div *ngIf="isShowContactList" class="category-list-container">
+<div *ngIf="isShowContactList" class="category-list-container">
         <button type="button" class="btn btn-primary mr-3" (click)="hideContactList(null)" >Add new contact</button> 
         <button *ngIf="!isNoData" type="button" class="btn btn-primary" (click)="exportToCsv()" >Export To Csv</button>        
         <hr/>
@@ -99,4 +98,3 @@
             
         </form>
     </div>
-</div>

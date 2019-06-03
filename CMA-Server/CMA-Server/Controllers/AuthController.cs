@@ -58,7 +58,6 @@ namespace CMA_Server.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginUser loginUser)
         {
-            throw new Exception("Throwing exception");
             var sUser = await _userRepository.Login(loginUser.Username.ToLower(), loginUser.Password);
 
             if (sUser == null)

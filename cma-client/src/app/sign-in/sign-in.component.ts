@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { AlertifyService } from '../services/alertify.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -11,7 +12,7 @@ export class SignInComponent implements OnInit {
   model: any = {};
   showSignInForm = true;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private alertify: AlertifyService) { }
 
   ngOnInit() {
   }
@@ -19,10 +20,10 @@ export class SignInComponent implements OnInit {
   login() {
     this.authService.login(this.model).subscribe(
       next => {
-        console.log('logged in');
+        this.alertify.showSuccess('Logged in successfully');
       },
       error => {
-        console.log('error');
+        this.alertify.showError(error);
       }
     );
   }

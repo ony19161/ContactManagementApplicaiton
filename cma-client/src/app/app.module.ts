@@ -16,6 +16,9 @@ import { ContactComponent } from './contact/contact.component';
 import { NavComponent } from './nav/nav.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CategoryService } from './services/category.service';
+import { ErrorInterceptorProvider } from './services/error.interceptor';
+import { ContactService } from './services/contact.service';
+import { AlertifyService } from './services/alertify.service';
 
 @NgModule({
    declarations: [
@@ -39,7 +42,10 @@ import { CategoryService } from './services/category.service';
    ],
    providers: [
       AuthService,
-      CategoryService
+      CategoryService,
+      ContactService,
+      ErrorInterceptorProvider,
+      AlertifyService
    ],
    bootstrap: [
       AppComponent

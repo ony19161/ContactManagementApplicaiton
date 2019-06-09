@@ -16,5 +16,19 @@ namespace CMA_Server.Helpers
             response.Headers.Add("Access-Control-Expose-Headers", "Application-Error");
             response.Headers.Add("Access-Control-Allow-Origin", "*");
         }
+
+        public static string Shorten(this string str, int numberOfWords)
+        {
+            if (string.IsNullOrEmpty(str))
+                return string.Empty;
+
+            var words = str.Split(' ');
+
+            if (words.Length <= numberOfWords)
+                return str;
+
+            return string.Join(" ", words.Take(numberOfWords));
+
+        }
     }
 }

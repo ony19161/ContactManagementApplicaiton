@@ -17,7 +17,7 @@
       <div class="my-2 my-lg-0 mr-3">      
         <div class="dropdown" dropdown>
           <a class="dropdown-toggle text-light" id="dropdownMenuLink" dropdownToggle>
-            Welcome user
+            Welcome {{authService.user?.name | titlecase}}
           </a>      
           <div class="dropdown-menu mb-2" *dropdownMenu>
             <a class="dropdown-item" [routerLink]="['/edit-profile']">

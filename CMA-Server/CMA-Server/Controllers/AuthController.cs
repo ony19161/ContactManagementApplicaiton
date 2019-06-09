@@ -9,6 +9,7 @@ using CMA.Db.Models;
 using CMA.DTO.RequestModels;
 using CMA.DTO.ViewModels;
 using CMA.Repository.Interfaces;
+using CMA_Server.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -68,7 +69,9 @@ namespace CMA_Server.Controllers
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, sUser.Id.ToString()),
-                new Claim(ClaimTypes.Name, sUser.Email)
+                new Claim(ClaimTypes.Email, sUser.Email),
+                new Claim(ClaimTypes.Name, sUser.Name.Shorten(1))
+
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));

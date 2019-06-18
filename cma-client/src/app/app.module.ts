@@ -19,6 +19,7 @@ import { CategoryService } from './services/category.service';
 import { ErrorInterceptorProvider } from './services/error.interceptor';
 import { ContactService } from './services/contact.service';
 import { AlertifyService } from './services/alertify.service';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
    declarations: [
@@ -45,7 +46,8 @@ import { AlertifyService } from './services/alertify.service';
       CategoryService,
       ContactService,
       ErrorInterceptorProvider,
-      AlertifyService
+      AlertifyService,
+      AuthGuard
    ],
    bootstrap: [
       AppComponent

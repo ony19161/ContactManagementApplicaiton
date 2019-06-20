@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace CMA.Db.Models
@@ -28,6 +29,9 @@ namespace CMA.Db.Models
         public byte[] PasswordSalt { get; set; }
 
         public DateTime? LastLoggedIn { get; set; }
+
+        [ForeignKey("PhotoId")]
+        public virtual Photo Photo { get; set; }
 
     }
 }

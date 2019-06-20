@@ -4,14 +4,16 @@ using CMA.Db;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CMA.Db.Migrations
 {
     [DbContext(typeof(CMADbContext))]
-    partial class CMADbContextModelSnapshot : ModelSnapshot
+    [Migration("20190619054058_PhotosTableAdded")]
+    partial class PhotosTableAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,12 +64,6 @@ namespace CMA.Db.Migrations
 
                     b.Property<Guid?>("CategoryId");
 
-                    b.Property<string>("City")
-                        .HasMaxLength(100);
-
-                    b.Property<string>("Country")
-                        .HasMaxLength(100);
-
                     b.Property<DateTime>("CreatedAt");
 
                     b.Property<string>("CreatedBy")
@@ -92,7 +88,7 @@ namespace CMA.Db.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
-                    b.Property<Guid?>("PhotoId");
+                    b.Property<string>("ProfilePicture");
 
                     b.Property<string>("RequestFrom")
                         .HasMaxLength(20);
@@ -100,8 +96,6 @@ namespace CMA.Db.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("PhotoId");
 
                     b.ToTable("Contacts");
                 });
@@ -193,10 +187,6 @@ namespace CMA.Db.Migrations
                     b.HasOne("CMA.Db.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId");
-
-                    b.HasOne("CMA.Db.Models.Photo", "Photo")
-                        .WithMany()
-                        .HasForeignKey("PhotoId");
                 });
 
             modelBuilder.Entity("CMA.Db.Models.User", b =>

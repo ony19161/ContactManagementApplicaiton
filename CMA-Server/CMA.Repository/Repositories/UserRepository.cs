@@ -35,7 +35,7 @@ namespace CMA.Repository.Repositories
 
         public async Task<User> Login(string username, string password)
         {
-            User user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email.Equals(username));
+            User user = await _dbContext.Users.Include(u => u.Photo).FirstOrDefaultAsync(u => u.Email.Equals(username));
 
             if (user == null)
                 return null;

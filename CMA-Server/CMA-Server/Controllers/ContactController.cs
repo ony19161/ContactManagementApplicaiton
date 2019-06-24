@@ -111,7 +111,7 @@ namespace CMA_Server.Controllers
         }
 
         [HttpPost("update")]
-        public async Task<IActionResult> UpdateCategory(RequstModels.Contact rContact)
+        public async Task<IActionResult> UpdateContact(RequstModels.Contact rContact)
         {
             var sCatetory = await _categoryRepository.Get(Guid.Parse(rContact.CategoryId));
             var sContact = await _contactRepository.Get(Guid.Parse(rContact.Id));

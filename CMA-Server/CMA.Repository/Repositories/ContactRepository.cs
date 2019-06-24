@@ -22,7 +22,7 @@ namespace CMA.Repository.Repositories
         }
         public async Task<PagedList<Contact>> GetContacts(RequestModels.PagingFilter pagingFilter)
         {
-            var contacts = _dbContext.Contacts.Include(c => c.Category).OrderBy(c => c.Name);
+            var contacts = _dbContext.Contacts.Include(c => c.Photo).Include(c => c.Category).OrderBy(c => c.Name);
 
             return await PagedList<Contact>.CreateAsync(contacts, pagingFilter.PageIndex, pagingFilter.PageSize);
         }

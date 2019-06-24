@@ -41,7 +41,6 @@ namespace CMA_Server.Controllers
                         Email = sContact.Email,
                         Address = sContact.Address,
                         Mobile = sContact.Mobile,
-                        ProfilePicture = sContact.ProfilePicture,
                         Category = sContact.Category.Title,
                         CategoryId = sContact.Category.Id.ToString()
                     });
@@ -71,7 +70,6 @@ namespace CMA_Server.Controllers
                 Email = sContact.Email,
                 Address = sContact.Address,
                 Mobile = sContact.Mobile,
-                ProfilePicture = sContact.ProfilePicture,
                 CategoryId = sContact.Category.Id.ToString()
             });
         }
@@ -87,8 +85,7 @@ namespace CMA_Server.Controllers
                 Email = rContact.Email,
                 Address = rContact.Address,
                 Mobile = rContact.Mobile,
-                ProfilePicture = rContact.ProfilePicture,
-                Category = sCatetory,
+                Category = sCatetory,                
                 CreatedBy = "system", // get user from token
                 CreatedAt = DateTime.UtcNow,
                 ModifiedBy = "system", // get user from token

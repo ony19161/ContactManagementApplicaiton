@@ -16,6 +16,14 @@ namespace CMA.Db.Models
         [MaxLength(100)]
         public string Email { get; set; }
 
+        
+        [MaxLength(100)]
+        public string City { get; set; }
+
+        
+        [MaxLength(100)]
+        public string Country { get; set; }
+
         [Required]
         [MaxLength(13)]
         public string Mobile { get; set; }
@@ -23,9 +31,11 @@ namespace CMA.Db.Models
         [Required]
         [MaxLength(250)]
         public string Address { get; set; }
-        public string ProfilePicture { get; set; }
 
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
+
+        [ForeignKey("PhotoId")]
+        public virtual Photo Photo { get; set; }
     }
 }
